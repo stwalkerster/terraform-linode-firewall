@@ -27,3 +27,6 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# This is a module that shouldn't be init'ed directly, so should never have a lockfile or state.
+.terraform.lock.hcl
