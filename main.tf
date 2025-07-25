@@ -34,8 +34,8 @@ resource "linode_firewall" "firewall" {
       action   = "ACCEPT"
       protocol = "TCP"
       ports    = join(",", rule.value.ports)
-      ipv4     = rule.value.public ? ["0.0.0.0/0"] : rule.value.ipv4
-      ipv6     = rule.value.public ? ["::/0"] : rule.value.ipv6
+      ipv4     = rule.value.public ? ["0.0.0.0/0"] : (length(rule.value.ipv4) > 0 ? rule.value.ipv4 : null)
+      ipv6     = rule.value.public ? ["::/0"] : (length(rule.value.ipv6) > 0 ? rule.value.ipv6 : null)
     }
   }
 
@@ -48,8 +48,8 @@ resource "linode_firewall" "firewall" {
       action   = "ACCEPT"
       protocol = "UDP"
       ports    = join(",", rule.value.ports)
-      ipv4     = rule.value.public ? ["0.0.0.0/0"] : rule.value.ipv4
-      ipv6     = rule.value.public ? ["::/0"] : rule.value.ipv6
+      ipv4     = rule.value.public ? ["0.0.0.0/0"] : (length(rule.value.ipv4) > 0 ? rule.value.ipv4 : null)
+      ipv6     = rule.value.public ? ["::/0"] : (length(rule.value.ipv6) > 0 ? rule.value.ipv6 : null)
     }
   }
 
@@ -61,8 +61,8 @@ resource "linode_firewall" "firewall" {
       label    = rule.value.comment
       action   = "ACCEPT"
       protocol = "ICMP"
-      ipv4     = rule.value.public ? ["0.0.0.0/0"] : rule.value.ipv4
-      ipv6     = rule.value.public ? ["::/0"] : rule.value.ipv6
+      ipv4     = rule.value.public ? ["0.0.0.0/0"] : (length(rule.value.ipv4) > 0 ? rule.value.ipv4 : null)
+      ipv6     = rule.value.public ? ["::/0"] : (length(rule.value.ipv6) > 0 ? rule.value.ipv6 : null)
     }
   }
 }
